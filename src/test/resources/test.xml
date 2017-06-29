@@ -1,0 +1,13 @@
+<!--
+  ~ Copyright (c) 2017 Kloudless Inc. All rights reserved.
+  ~ Kloudless PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+  -->
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="test1" verbose="1" >
+  <test name="test1">
+    <packages>
+      <package name="com.kloudless.connector.hipchat.config" />
+      <package name="com.kloudless.connector.hipchat.unittest" />
+    </packages>
+  </test>
+</suite>

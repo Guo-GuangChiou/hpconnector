@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright (c) 2017 Kloudless Inc. All rights reserved.
+  ~ Kloudless PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+  -->
+
+<configuration debug="true">
+  <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook" />
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>/tmp/com.kloudless.connector.hipchat.test.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+      <fileNamePattern>/tmp/com.kloudless.connector.hipchat.test.%i.log.zip</fileNamePattern>
+      <minIndex>1</minIndex>
+      <maxIndex>3</maxIndex>
+    </rollingPolicy>
+
+    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+      <maxFileSize>5MB</maxFileSize>
+    </triggeringPolicy>
+    <encoder>
+      <pattern>%date{YYYY-MM-dd HH:mm:ss} %-5level [%thread] %logger:%line - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="ASYNC500" class="ch.qos.logback.classic.AsyncAppender">
+    <queueSize>100000</queueSize>
+    <discardingThreshold>0</discardingThreshold>
+    <appender-ref ref="FILE" />
+  </appender>
+
+  <logger name="com.kloudless.connector.hipchat" level="DEBUG" />
+
+  <root level="DEBUG">
+    <appender-ref ref="FILE" />
+  </root>
+</configuration>
